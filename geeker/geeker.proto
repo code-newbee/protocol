@@ -1,6 +1,6 @@
 syntax = "proto3";
-package github.newbee.geek;
-option go_package = "github/code-newbee/protocol/geeker";
+package newbee.geek;
+option go_package = "github.com/code-newbee/protocol/geeker";
 
 
 service Geeker{
