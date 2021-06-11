@@ -1,0 +1,1 @@
+protoc -I ./ geeker/geeker.proto --go_out=plugins=grpc:geeker 
