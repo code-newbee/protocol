@@ -1,4 +1,4 @@
-module github/code-newbee/protocol/geeker
+module github.com/code-newbee/protocol/geeker
 
 go 1.14
 
