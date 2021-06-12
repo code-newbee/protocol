@@ -1,5 +1,6 @@
 syntax = "proto3";
-package newbee.geek;
+// package 名采用三段式 grpc.{appName}.{serverName}
+package grpc.newbee.geek;
 option go_package = "github.com/code-newbee/protocol/geeker";
 
 
