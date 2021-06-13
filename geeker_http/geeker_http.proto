@@ -1,3 +1,26 @@
 syntax = "proto3";
 
-package grpc.newbee.geek-http;
+package grpc.newbee.geek_http;
+
+// import "google/protobuf/wrappers.proto";
+import "google/api/annotations.proto";
+
+option go_package = "github.com/code-newbee/protocol/geeker_http";
+
+service GeekerHttp {
+   rpc SayHello (SayHelloRequest) returns (SayHelloResponse) {
+      option (google.api.http) = {
+         post: "/v1/sayHello"
+         body: "*"
+      };
+   }
+}
+
+message SayHelloRequest {
+   string Message = 1;
+}
+
+message SayHelloResponse {
+   string Message = 1;
+   string Code = 2;
+}
