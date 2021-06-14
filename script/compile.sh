@@ -50,7 +50,7 @@ case "$lang" in
             -I ./ \
             -I /usr/local/include \
             -I "$GOPATH"/src \
-            --java_out="$protoPath" \
+            --java_out=plugins=grpc:"$protoPath" \
             "$protoPath"/"$protoPath".proto \
   ;;
 esac

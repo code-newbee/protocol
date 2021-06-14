@@ -33,8 +33,8 @@ var _ = utilities.NewDoubleArray
 var _ = descriptor.ForMessage
 var _ = metadata.Join
 
-func request_Geeker_SayHello_0(ctx context.Context, marshaler runtime.Marshaler, client GeekerClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq SayHelloRequest
+func request_Greeker_SayHello_0(ctx context.Context, marshaler runtime.Marshaler, client GreekerClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq HelloRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -50,8 +50,8 @@ func request_Geeker_SayHello_0(ctx context.Context, marshaler runtime.Marshaler,
 
 }
 
-func local_request_Geeker_SayHello_0(ctx context.Context, marshaler runtime.Marshaler, server GeekerServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq SayHelloRequest
+func local_request_Greeker_SayHello_0(ctx context.Context, marshaler runtime.Marshaler, server GreekerServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq HelloRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -67,13 +67,13 @@ func local_request_Geeker_SayHello_0(ctx context.Context, marshaler runtime.Mars
 
 }
 
-// RegisterGeekerHandlerServer registers the http handlers for service Geeker to "mux".
-// UnaryRPC     :call GeekerServer directly.
+// RegisterGreekerHandlerServer registers the http handlers for service Greeker to "mux".
+// UnaryRPC     :call GreekerServer directly.
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
-// Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterGeekerHandlerFromEndpoint instead.
-func RegisterGeekerHandlerServer(ctx context.Context, mux *runtime.ServeMux, server GeekerServer) error {
+// Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterGreekerHandlerFromEndpoint instead.
+func RegisterGreekerHandlerServer(ctx context.Context, mux *runtime.ServeMux, server GreekerServer) error {
 
-	mux.Handle("POST", pattern_Geeker_SayHello_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_Greeker_SayHello_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -84,7 +84,7 @@ func RegisterGeekerHandlerServer(ctx context.Context, mux *runtime.ServeMux, ser
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_Geeker_SayHello_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_Greeker_SayHello_0(rctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -92,16 +92,16 @@ func RegisterGeekerHandlerServer(ctx context.Context, mux *runtime.ServeMux, ser
 			return
 		}
 
-		forward_Geeker_SayHello_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_Greeker_SayHello_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
 	return nil
 }
 
-// RegisterGeekerHandlerFromEndpoint is same as RegisterGeekerHandler but
+// RegisterGreekerHandlerFromEndpoint is same as RegisterGreekerHandler but
 // automatically dials to "endpoint" and closes the connection when "ctx" gets done.
-func RegisterGeekerHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) (err error) {
+func RegisterGreekerHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) (err error) {
 	conn, err := grpc.Dial(endpoint, opts...)
 	if err != nil {
 		return err
@@ -121,23 +121,23 @@ func RegisterGeekerHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMu
 		}()
 	}()
 
-	return RegisterGeekerHandler(ctx, mux, conn)
+	return RegisterGreekerHandler(ctx, mux, conn)
 }
 
-// RegisterGeekerHandler registers the http handlers for service Geeker to "mux".
+// RegisterGreekerHandler registers the http handlers for service Greeker to "mux".
 // The handlers forward requests to the grpc endpoint over "conn".
-func RegisterGeekerHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc.ClientConn) error {
-	return RegisterGeekerHandlerClient(ctx, mux, NewGeekerClient(conn))
+func RegisterGreekerHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc.ClientConn) error {
+	return RegisterGreekerHandlerClient(ctx, mux, NewGreekerClient(conn))
 }
 
-// RegisterGeekerHandlerClient registers the http handlers for service Geeker
-// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "GeekerClient".
-// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "GeekerClient"
+// RegisterGreekerHandlerClient registers the http handlers for service Greeker
+// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "GreekerClient".
+// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "GreekerClient"
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
-// "GeekerClient" to call the correct interceptors.
-func RegisterGeekerHandlerClient(ctx context.Context, mux *runtime.ServeMux, client GeekerClient) error {
+// "GreekerClient" to call the correct interceptors.
+func RegisterGreekerHandlerClient(ctx context.Context, mux *runtime.ServeMux, client GreekerClient) error {
 
-	mux.Handle("POST", pattern_Geeker_SayHello_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_Greeker_SayHello_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
@@ -146,14 +146,14 @@ func RegisterGeekerHandlerClient(ctx context.Context, mux *runtime.ServeMux, cli
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_Geeker_SayHello_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_Greeker_SayHello_0(rctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_Geeker_SayHello_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_Greeker_SayHello_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -161,9 +161,9 @@ func RegisterGeekerHandlerClient(ctx context.Context, mux *runtime.ServeMux, cli
 }
 
 var (
-	pattern_Geeker_SayHello_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "sayHello"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_Greeker_SayHello_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "sayHello"}, "", runtime.AssumeColonVerbOpt(true)))
 )
 
 var (
-	forward_Geeker_SayHello_0 = runtime.ForwardResponseMessage
+	forward_Greeker_SayHello_0 = runtime.ForwardResponseMessage
 )
