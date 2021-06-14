@@ -2,7 +2,7 @@ syntax = "proto3";
 // package 名采用三段式 grpc.{appName}.{serverName}
 package grpc.newbee.geek;
 option go_package = "github.com/code-newbee/protocol/geeker";
-option java_package = "github.com.code.newbee.protocol.geeker";
+option java_package = "io.netty.study.common";
 option java_outer_classname = "GeekerProto";
 
 import "google/api/annotations.proto";

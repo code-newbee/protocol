@@ -1,26 +1,37 @@
+#!/bin/bash
+
 # 变量定义
 protoPath=""
 protocol="gRpc"
 lang="go"
 workspace="/Users/ark/Code/Go/grpc/code-newbee/protocol"
 
-if [ "$1" == "" ]
-  then
-    echo "proto path empty"
-    exit
-  else
-    protoPath="$1"
-fi
-
-if [ "$2" != "" ]
-  then
-  protocol="$2"
-fi
-
-if [ "$3" != "" ]
-  then
-  lang="$3"
-fi
+# p protoPath
+# t protocol http, grpc
+# l lang java go
+while getopts "p:t:l:" opt; do
+  case $opt in
+      p)
+        if [ "$OPTARG" == "" ];
+          then
+            echo "proto path empty"
+            exit
+          else
+            protoPath="$OPTARG"
+        fi
+        ;;
+      t)
+        protocol="$OPTARG"
+        ;;
+      l)
+        lang="$OPTARG"
+        ;;
+      *)
+        echo "-$opt not recognized"
+        exit
+        ;;
+  esac
+done
 
 cd "$workspace" || exit
 
