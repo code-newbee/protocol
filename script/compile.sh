@@ -1,6 +1,7 @@
 # 变量定义
 protoPath=""
 protocol="gRpc"
+lang="go"
 workspace="/Users/ark/Code/Go/grpc/code-newbee/protocol"
 
 if [ "$1" == "" ]
@@ -16,14 +17,32 @@ if [ "$2" != "" ]
   protocol="$2"
 fi
 
+if [ "$3" != "" ]
+  then
+  lang="$3"
+fi
+
 cd "$workspace" || exit
 
-protoc \
-          -I ./ \
-          -I /usr/local/include \
-          -I "$GOPATH"/src \
-          --go_out=plugins=grpc:"$protoPath" \
-          "$protoPath"/"$protoPath".proto \
+case "$lang" in
+  "go")
+  protoc \
+            -I ./ \
+            -I /usr/local/include \
+            -I "$GOPATH"/src \
+            --go_out=plugins=grpc:"$protoPath" \
+            "$protoPath"/"$protoPath".proto \
+  ;;
+
+  "java")
+    protoc \
+            -I ./ \
+            -I /usr/local/include \
+            -I "$GOPATH"/src \
+            --java_out="$protoPath" \
+            "$protoPath"/"$protoPath".proto \
+  ;;
+esac
 
 case "$protocol" in
   "http")
