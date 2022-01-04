@@ -33,6 +33,8 @@ service Greeker{
 
 message HelloRequest{
     string name = 1;
+    int32 age=2;
+    string address=3;
 }
 
 message HelloReply{
